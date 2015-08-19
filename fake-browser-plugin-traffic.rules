@@ -8,3 +8,16 @@ fast_pattern; content:"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.17 (K
 http_header; content:!"Referer|3A|"; http_header; classtype:trojan-activity; 
 reference:url,blogs.cisco.com/security/talos/bad-browser-plug-ins; sid:1; rev:1;)
 
+*/ Following rule detects W32/Jeefo Adware traffic */
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET MALWARE W32/Jeefo Adware CnC Beacon 3"; flow:established,to_server; 
+content:"POST"; http_method; content:"/?v="; http_uri; depth:4; content:"&pcrc="; http_uri; content:"&LUDT="; http_uri; 
+content:!"Referer|3A|"; http_header; content:!"User-Agent|3A|"; http_header; classtype:trojan-activity; sid:1455993; rev:3;)
+
+ alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ET MALWARE W32/Jeefo Adware CnC Beacon 2"; flow:established,to_server; 
+ content:"POST"; http_method; content:"/?v="; http_uri; depth:4; content:"&pcrc="; http_uri; 
+ content:"&LSVRDT="; http_uri; content:"&ty="; http_uri; content:!"Referer|3A|"; http_header; 
+ content:!"User-Agent|3A|"; http_header; classtype:trojan-activity; sid:1455992; rev:2;)
+ 
+ 
+
