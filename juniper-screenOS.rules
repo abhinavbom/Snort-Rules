@@ -1,0 +1,4 @@
+alert tcp $HOME_NET 23 -> any any (msg:"FOX-SRT - Flowbit - Juniper ScreenOS telnet (noalert)"; 
+flow:established,to_client; content:"Remote Management Console|0d0a|"; offset:0; depth:27; flowbits:set,fox.juniper.screenos; 
+flowbits:noalert; reference:cve,2015-7755; reference:url,http://kb.juniper.net/JSA10713; classtype:policy-violation; 
+sid:200000000; rev:1;)
